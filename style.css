@@ -1,78 +1,215 @@
 body {
   margin: 0;
-  background-color: rgb(65, 65, 65);
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #232526 100%);
   display: flex;
-  justify-content: center;
-  font-family: "Courier New", Courier, monospace;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Orbitron", "Courier New", Courier, monospace;
+  user-select: none;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  max-width: 100vw;
+}
+
+.game-title {
+  font-size: 1.7rem;
+  color: #00ffe7;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #00ffe7, 0 0 24px #00ffe7;
+  margin-bottom: 0;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 96vw;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 canvas {
-  margin-top: 15px;
-  z-index: 10;
+  margin-top: 14px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px 0 rgba(31, 38, 135, 0.25), 0 0 0 2px #00ffe7;
+  background: #111;
+  transition: box-shadow 0.2s;
+  outline: none;
+  max-width: 98vw;
+  max-height: 70vh;
 }
 
-.game-over-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 450px;
-  height: 600px;
-  background-color: rgb(56, 56, 56);
-  margin-top: -2px;
-  z-index: 11;
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  max-width: 340px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: "Orbitron", "Courier New", Courier, monospace;
+  margin-top: 6px;
+  margin-bottom: -6px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 6px #00ffe7;
+  padding: 6px 10px;
+  letter-spacing: 1px;
+}
+
+.scoreboard span {
+  text-shadow: 0 0 6px #00ffe7;
+}
+
+#score-values {
+  font-size: 1.3rem;
+  color: #ffea00;
+  text-shadow: 0 0 8px #ffea00, 0 0 12px #ffea00;
+  margin: 0 10px;
+}
+
+.instructions {
+  color: #fff;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  margin-bottom: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00ffe7;
+  box-shadow: 0 0 5px #00ffe7;
+  padding: 5px 0;
+  border-radius: 5px;
+  width: 98%;
+  max-width: 340px;
+  font-family: "Orbitron", "Courier New", Courier, monospace;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 20, 30, 0.92);
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: rgb(187, 0, 0);
+  animation: fade-in 0.4s;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.overlay h1 {
+  font-size: 1.5rem;
+  color: #ffea00;
+  text-shadow: 0 0 12px #ffea00, 0 0 24px #ffea00;
+  margin-bottom: 8px;
+}
+
+.overlay p {
+  color: #fff;
+  font-size: 1rem;
+  margin: 6px 0;
+  text-shadow: 0 0 4px #00ffe7;
+}
+
+.overlay .big {
+  font-size: 1.7rem;
+  color: #00ffe7;
+  margin: 12px 0 0 0;
+  text-shadow: 0 0 12px #00ffe7;
 }
 
 button {
   cursor: pointer;
-  color: rgb(0, 0, 0);
-  background-color: rgb(195, 195, 195);
+  color: #232526;
+  background: linear-gradient(90deg, #00ffe7 0%, #ffea00 100%);
   border: none;
-  height: 50px;
-  width: 200px;
-  border-radius: 5px;
-  font-size: 20px;
-  font-family: "Courier New", Courier, monospace;
+  height: 38px;
+  width: 140px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: "Orbitron", "Courier New", Courier, monospace;
+  font-weight: bold;
+  box-shadow: 0 0 5px #00ffe7;
+  margin-top: 14px;
+  transition: filter 0.2s, transform 0.1s;
 }
 
 button:hover {
-  filter: brightness(80%);
+  filter: brightness(110%);
 }
 
 button:active {
-  transform: scale(0.95);
+  transform: scale(0.97);
 }
 
 button:focus {
   outline: none;
 }
 
-/* Montior and Larger Screens */
-@media screen and (min-width: 1800px) {
-  canvas {
-    margin-top: 100px;
+@media screen and (max-width: 600px) {
+
+  #game-container,
+  .scoreboard,
+  .instructions {
+    width: 99vw;
+    max-width: 99vw;
+    font-size: 0.95rem;
+    padding: 0 1vw;
   }
 
-  .game-over-container {
-    margin-top: -19px;
+  .scoreboard {
+    font-size: 0.95rem;
+    padding: 4px 1vw;
+  }
+
+  .instructions {
+    font-size: 0.8rem;
+    padding: 4px 0;
+  }
+
+  canvas {
+    width: 99vw !important;
+    height: 55vw !important;
+    min-height: 120px;
+    margin-top: 8px;
+    max-width: 99vw;
+    max-height: 60vh;
+  }
+
+  .overlay {
+    padding: 0 1vw;
   }
 }
 
-/* L Smartphone (Vertical) */
-@media screen and (max-width: 500px) {
-  canvas {
-    width: 100%;
-    height: 700px;
-    margin-top: 50px;
+@media screen and (min-width: 1200px) {
+  #game-container {
+    max-width: 420px;
   }
 
-  .game-over-container {
-    width: 100%;
-    height: 700px;
+  canvas {
+    max-width: 420px;
+    max-height: 70vh;
   }
 }

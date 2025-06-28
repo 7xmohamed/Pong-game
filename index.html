@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game | Classic Pong</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <!-- Script -->
+    <header>
+        <h1 class="game-title">Classic Pong</h1>
+    </header>
+    <div id="game-container">
+        <div class="scoreboard" id="scoreboard">
+            <span id="player-label">You</span>
+            <span id="score-values">0 : 0</span>
+            <span id="computer-label">Computer</span>
+        </div>
+        <div class="instructions" id="instructions">
+            Move paddle: <b>Mouse</b> or <b>Arrow keys</b> (laptop), <b>Touch</b> (phone)
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
+
 </html>
